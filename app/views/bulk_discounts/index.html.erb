@@ -1,0 +1,7 @@
+<h1>Hello</h1>
+
+<% @discounts.each do |discount| %>
+  <p>Discount Name:<%= discount.name%></p>
+  <p>Percentage:<%= discount.discount%></p>
+  <p>Quantity Threshold:<%= discount.quantity_threshold%></p
+<% end %>
