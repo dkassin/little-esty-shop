@@ -1,2 +1,0 @@
-class BulkDiscountItem < ApplicationRecord
-end
