@@ -65,9 +65,9 @@ RSpec.configure do |config|
     @merchant_2 = Merchant.create!(name: "James")
 
     # Bulk Discounts
-    @discount_1 = @merchant_1.bulk_discounts.create!(name: "A", discount: 0.8, quantity_threshold: 10)
-    @discount_2 = @merchant_1.bulk_discounts.create!(name: "B", discount: 0.7, quantity_threshold: 15)
-    @discount_3 = @merchant_2.bulk_discounts.create!(name: "C", discount: 0.85, quantity_threshold: 15)
+    @discount_1 = @merchant_1.bulk_discounts.create!(name: "The Grand Discount", discount: 20.0, quantity_threshold: 10)
+    @discount_2 = @merchant_1.bulk_discounts.create!(name: "The Supreme Discount", discount: 30.0, quantity_threshold: 15)
+    @discount_3 = @merchant_2.bulk_discounts.create!(name: "The Chilly Discount", discount: 15.0, quantity_threshold: 15)
 
     # Items
     @item_1 = @merchant_1.items.create!(name: "Item_1", description: "Description_1", unit_price: 16)
