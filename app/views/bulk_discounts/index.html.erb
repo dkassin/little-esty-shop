@@ -6,4 +6,5 @@
   <p>Discount title: <%=link_to "#{discount.name}", "/merchants/#{discount.merchant_id}/bulk_discounts/#{discount.id}" %></p>
   <p>Percentage: <%= discount.discount%>% off</p>
   <p>Quantity Threshold: <%= discount.quantity_threshold%></p
+  <p><%= link_to "Delete #{discount.name}", "/merchants/#{discount.merchant_id}/bulk_discounts/#{discount.id}", method: :delete, params: {discount_id: discount.id} %></p>
 <% end %>
