@@ -31,5 +31,15 @@ RSpec.describe Invoice do
 
       expect(Invoice.incomplete_invoices).to eq(expected_result)
     end
+
+    it 'shows the discounted rev' do
+      expect(@invoice_2.discount_rev_by_merchant(@merchant_1)).to eq(0)
+    end
+
+    it 'shows only invoice items of desired merchant' do
+      expect(@invoice_2.merchant_filter(@merchant_1).first).to eq(@invoice_item_2)
+    end
+
+
   end
 end
