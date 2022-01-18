@@ -31,13 +31,15 @@ RSpec.describe 'Admin Invoices Show' do
     end
 
     it 'displays all of the items and their attributes' do
-      visit "/admin/invoices/#{@invoice_1.id}"
+      visit "/admin/invoices/#{@invoice_5.id}"
 
-      within "#invoice_show-#{@invoice_1.id}" do
-        expect(page).to have_content("#{@invoice_1.invoice_items.first.item.name}")
-        expect(page).to have_content("#{@invoice_1.invoice_items.first.quantity}")
-        expect(page).to have_content("#{@invoice_1.invoice_items.first.unit_price}")
-        expect(page).to have_content("#{@invoice_1.invoice_items.first.status}")
+
+      within "#invoice_show-#{@invoice_5.id}" do
+
+        expect(page).to have_content("#{@invoice_5.invoice_items.first.item.name}")
+        expect(page).to have_content("#{@invoice_5.invoice_items.first.quantity}")
+        expect(page).to have_content("#{@invoice_5.invoice_items.first.unit_price}")
+        expect(page).to have_content("#{@invoice_5.invoice_items.first.status}")
       end
     end
   end

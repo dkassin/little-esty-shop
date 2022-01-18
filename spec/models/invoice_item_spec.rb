@@ -35,5 +35,4 @@ RSpec.describe InvoiceItem do
   it 'Show the discounted or regular revenue for an invoice_item' do
     expect(@invoice_item_2.discounted_rev).to eq(1127)
   end
-
 end

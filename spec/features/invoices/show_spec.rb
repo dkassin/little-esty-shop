@@ -32,14 +32,14 @@ RSpec.describe "Merchant invoice show" do
   end
 
   it 'has a select field to update the invoice_item status' do
-    visit merchant_invoice_path(@merchant_1, @invoice_1)
+    visit merchant_invoice_path(@merchant_1, @invoice_5)
 
-    @invoice_1.invoice_items.each do |invoice_item|
+    @invoice_5.invoice_items.each do |invoice_item|
       expect(page).to have_content("pending")
       select "packaged", from: "invoice_item_status"
       click_on "Update Item Status"
 
-      expect(current_path).to eq(merchant_invoice_path(@merchant_1, @invoice_1))
+      expect(current_path).to eq(merchant_invoice_path(@merchant_1, @invoice_5))
       expect(page).to have_content("#{invoice_item.status}")
     end
   end
