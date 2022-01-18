@@ -66,8 +66,9 @@ RSpec.configure do |config|
 
     # Bulk Discounts
     @discount_1 = @merchant_1.bulk_discounts.create!(name: "The Grand Discount", discount: 20.0, quantity_threshold: 10)
-    @discount_2 = @merchant_1.bulk_discounts.create!(name: "The Supreme Discount", discount: 30.0, quantity_threshold: 15)
+    @discount_2 = @merchant_1.bulk_discounts.create!(name: "The Supreme Discount", discount: 30.0, quantity_threshold: 20)
     @discount_3 = @merchant_2.bulk_discounts.create!(name: "The Chilly Discount", discount: 15.0, quantity_threshold: 15)
+    @discount_4 = @merchant_1.bulk_discounts.create!(name: "The Insulting Discount", discount: 10.0, quantity_threshold: 10)
     # Items
     @item_1 = @merchant_1.items.create!(name: "Item_1", description: "Description_1", unit_price: 16)
     @item_2 = @merchant_1.items.create!(name: "Item_2", description: "Description_2", unit_price: 23)
@@ -140,7 +141,7 @@ RSpec.configure do |config|
     @invoice_item_19 = @invoice_19.invoice_items.create!(item_id: @item_8.id, quantity: 18, unit_price: @item_8.unit_price, status: 0)
     @invoice_item_20 = @invoice_20.invoice_items.create!(item_id: @item_7.id, quantity: 18, unit_price: @item_7.unit_price, status: 0)
     @invoice_item_21 = @invoice_2.invoice_items.create!(item_id: @item_11.id, quantity: 18, unit_price: @item_11.unit_price, status: 0)
-
+    @invoice_item_21 = @invoice_2.invoice_items.create!(item_id: @item_11.id, quantity: 18, unit_price: @item_11.unit_price, status: 0)
     # @invoice_20.invoice_items.create!(item_id: @item_11.id, quantity: 13, unit_price: @item_11.unit_price, status: 2)
     # @invoice_21.invoice_items.create!(item_id: @item_12.id, quantity: 17, unit_price: @item_12.unit_price, status: 2)
     # @invoice_22.invoice_items.create!(item_id: @item_11.id, quantity: 18, unit_price: @item_11.unit_price, status: 2)
