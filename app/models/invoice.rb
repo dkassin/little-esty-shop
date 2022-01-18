@@ -3,7 +3,7 @@ class Invoice < ApplicationRecord
   has_many :transactions
   has_many :invoice_items
   has_many :items, through: :invoice_items
-  has_many :merchant, through: :items
+  has_many :merchants, through: :items
   has_many :bulk_discounts, through: :merchants
   validates :status, presence: true
   enum status: { cancelled: 0, "in progress" => 1, completed: 2, pending: 3 }
@@ -20,13 +20,7 @@ class Invoice < ApplicationRecord
   end
 
   def discount_rev_by_merchant(merchant)
-
-    x = []
-    merchant_filter(merchant).find_each do |i_item|
-         x << i_item.discounted_rev
-      end
-    x
-    binding.pry
+    merchant_filter(merchant).sum {|i_item| i_item.discounted_rev}
   end
 
   def merchant_filter(merchant)
@@ -34,7 +28,16 @@ class Invoice < ApplicationRecord
   end
 
   def total_rev_by_merchant(merchant)
-    merchant_filter.sum("unit_rice * qauntity")
+    merchant_filter(merchant).sum("invoice_items.unit_price * quantity")
   end
+
+  def amount_discount_rev_filtered(merchant)
+    merchant_filter(merchant).joins(:bulk_discounts)
+                             .where('invoice_items.quantity >= bulk_discounts.quantity_threshold')
+                             .select('invoice_items.id, max(invoice_items.unit_price * invoice_items.quantity * (bulk_discounts.discount/100)) as best_discount_amount')
+                             .group('invoice_items.id')
+                             .sum(&:best_discount_amount)
+  end
+
 
 end
