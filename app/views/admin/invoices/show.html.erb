@@ -5,8 +5,8 @@
 <p>Customer first name: <%= @invoice.customer.first_name %></p>
 <p>Customer last name: <%= @invoice.customer.last_name %></p>
 <section id ="admin_revenue">
-<p>Total revenue generated: <%= @invoice.total_revenue %> </p>
-<p>Total discount revenue generated: <%= @invoice.total_discount_rev %> </p>
+<p>Total revenue generated: <%= number_to_currency(@invoice.total_revenue/100, precision: 0)%> </p>
+<p>Total discount revenue generated: <%= number_to_currency(@invoice.total_discount_rev/100, precision: 0)%> </p>
 </section>
 <p>
   <%= form_with model: [:admin, @invoice], local: true do |form| %>

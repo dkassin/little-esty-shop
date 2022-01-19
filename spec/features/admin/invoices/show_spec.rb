@@ -13,12 +13,6 @@ RSpec.describe 'Admin Invoices Show' do
       expect(page).to have_content(@invoice_1.customer.last_name)
     end
 
-    it 'I see the total revenue that will be generated from this invoice' do
-      visit "/admin/invoices/#{@invoice_1.id}"
-
-      expect(page).to have_content("Total revenue generated: #{@invoice_1.total_revenue}")
-    end
-
     it 'I can update the invoice status' do
       visit "/admin/invoices/#{@invoice_1.id}"
 
@@ -47,8 +41,8 @@ RSpec.describe 'Admin Invoices Show' do
       visit "/admin/invoices/#{@invoice_2.id}"
 
       within "#admin_revenue" do
-        expect(page).to have_content("Total revenue generated: #{@invoice_2.total_revenue}")
-        expect(page).to have_content("Total discount revenue generated: #{@invoice_2.total_discount_rev}")
+        expect(page).to have_content("Total revenue generated: #{h.number_to_currency(@invoice_2.total_revenue/100, precision: 0)}")
+        expect(page).to have_content("Total discount revenue generated: #{h.number_to_currency(@invoice_2.total_discount_rev/100, precision: 0)}")
       end
 
     end

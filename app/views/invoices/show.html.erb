@@ -4,8 +4,8 @@
   <p>Invoice Status:<%= @invoice.status %></p>
   <p>Invoice created at:<%= @invoice.created_at.strftime("%A, %B %d, %Y") %></p>
   <section id ="revenue">
-  <p>Total Revenue: <%= number_to_currency(@invoice.total_rev_by_merchant(@merchant), precision: 0) %></p>
-  <p>Discounted Revenue: <%= number_to_currency(@invoice.total_discounted_rev_filtered(@merchant), precision: 0) %></p>
+  <p>Total Revenue: <%= number_to_currency(@invoice.total_rev_by_merchant(@merchant)/100, precision: 0) %></p>
+  <p>Discounted Revenue: <%= number_to_currency(@invoice.total_discounted_rev_filtered(@merchant)/100, precision: 0) %></p>
   </section>
   <p>Customer first name:<%= @invoice.customer.first_name %></p>
   <p>Customer last name:<%= @invoice.customer.last_name %></p>
