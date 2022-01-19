@@ -39,5 +39,7 @@ class Invoice < ApplicationRecord
                              .sum(&:best_discount_amount)
   end
 
-
+  def total_discounted_rev_filtered(merchant)
+    total_rev_by_merchant(merchant) - amount_discount_rev_filtered(merchant)
+  end
 end
