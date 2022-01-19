@@ -27,12 +27,4 @@ RSpec.describe InvoiceItem do
       expect(@invoice_item_13.best_discount).to eq(@discount_1)
     end
   end
-
-  it 'Show the best revenue for an invoice_item' do
-    expect(@invoice_item_2.rev).to eq(1610)
-  end
-
-  it 'Show the discounted or regular revenue for an invoice_item' do
-    expect(@invoice_item_2.discounted_rev).to eq(1127)
-  end
 end

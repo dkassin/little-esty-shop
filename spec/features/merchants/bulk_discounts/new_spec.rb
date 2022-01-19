@@ -16,7 +16,7 @@ RSpec.describe "Merchant Bulk Discount new" do
     new_discount = BulkDiscount.last
 
     expect(current_path).to eq("/merchants/#{@merchant_1.id}/bulk_discounts")
-    save_and_open_page
+    
     expect(page).to have_content(new_discount.name)
   end
 end
