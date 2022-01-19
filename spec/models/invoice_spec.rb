@@ -68,5 +68,17 @@ RSpec.describe Invoice do
     it 'shows the total discounted revenue' do
       expect(@invoice_4.total_discounted_rev_filtered(@merchant_1)).to eq(87372)
     end
+
+    it 'shows the amount discounted regardless of merchant on an invoice' do
+
+      expect(@invoice_2.merchants.count).to eq(2)
+      expect(@invoice_2.amount_discount_rev).to eq(4573.5)
+    end
+
+    it 'shows the total discounted revenue regardless of merchant on an invoice' do
+
+      expect(@invoice_2.merchants.count).to eq(2)
+      expect(@invoice_2.total_discount_rev).to eq(24306.5)
+    end
   end
 end
