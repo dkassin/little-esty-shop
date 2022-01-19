@@ -11,5 +11,20 @@ RSpec.describe InvoiceItem do
     it { should belong_to(:item) }
     it { should belong_to(:invoice) }
     it { should have_many(:transactions).through(:invoice) }
+    it { should have_many(:bulk_discounts).through(:merchant) }
+    it { should have_one(:merchant).through(:item) }
+  end
+
+  describe 'Show the best discount for an invoice_item' do
+    it 'shows test where an invoice item qualifies for all discounts but takes the best ' do
+      expect(@invoice_item_2.best_discount).to eq(@discount_2)
+    end
+    it 'shows edge case where no discount is applied ' do
+      expect(@invoice_item_1.best_discount).to eq(nil)
+    end
+
+    it 'show an edge case where two discounts qualify but takes best discount ' do
+      expect(@invoice_item_13.best_discount).to eq(@discount_1)
+    end
   end
 end

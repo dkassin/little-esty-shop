@@ -1,0 +1,16 @@
+<%= form_with url: merchant_bulk_discount_path(@merchant, @discount), method: :patch, local: true do |f| %>
+  <p>
+    <%= f.label :name  %>
+    <%= f.text_field :name, :placeholder => "#{@discount.name}" %>
+  </p>
+  <p>
+    <%= f.label :quantity_threshold %>
+    <%= f.text_field :quantity_threshold, :placeholder => "#{@discount.quantity_threshold}" %>
+  </p>
+  <p>
+    <%= f.label :discount %>
+    <%= f.text_field :discount, :placeholder => "#{@discount.discount}" %>
+  </p>
+
+  <%= f.submit "Submit"%>
+<% end %>

@@ -32,14 +32,14 @@ RSpec.describe "Merchant invoice show" do
   end
 
   it 'has a select field to update the invoice_item status' do
-    visit merchant_invoice_path(@merchant_1, @invoice_1)
+    visit merchant_invoice_path(@merchant_1, @invoice_5)
 
-    @invoice_1.invoice_items.each do |invoice_item|
+    @invoice_5.invoice_items.each do |invoice_item|
       expect(page).to have_content("pending")
       select "packaged", from: "invoice_item_status"
       click_on "Update Item Status"
 
-      expect(current_path).to eq(merchant_invoice_path(@merchant_1, @invoice_1))
+      expect(current_path).to eq(merchant_invoice_path(@merchant_1, @invoice_5))
       expect(page).to have_content("#{invoice_item.status}")
     end
   end
@@ -48,5 +48,25 @@ RSpec.describe "Merchant invoice show" do
     visit merchant_invoice_path(@merchant_1, @invoice_4)
     expect(page).to have_content("Total Revenue")
     expect(page).to have_content(h.number_to_currency(@invoice_4.total_revenue/100, precision: 0))
+  end
+
+  it 'I see total revenue and discouted revenue' do
+    visit merchant_invoice_path(@merchant_1, @invoice_4)
+
+    within "#revenue" do
+      expect(page).to have_content("Total Revenue")
+      expect(page).to have_content(h.number_to_currency(@invoice_4.total_rev_by_merchant(@merchant_1)/100, precision: 0))
+      expect(page).to have_content("Discounted Revenue")
+      expect(page).to have_content(h.number_to_currency(@invoice_4.total_discounted_rev_filtered(@merchant_1)/100, precision: 0))
+    end
+  end
+
+  it 'I see a link to the discount applied' do
+    visit merchant_invoice_path(@merchant_1, @invoice_6)
+    within "#discount-#{@invoice_item_6.id}" do
+      click_link("Discount Applied")
+
+      expect(current_path).to eq(merchant_bulk_discount_path(@merchant_1, @invoice_6.invoice_items.first.best_discount.id))
+    end
   end
 end

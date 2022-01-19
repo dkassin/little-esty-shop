@@ -31,14 +31,26 @@ RSpec.describe 'Admin Invoices Show' do
     end
 
     it 'displays all of the items and their attributes' do
-      visit "/admin/invoices/#{@invoice_1.id}"
+      visit "/admin/invoices/#{@invoice_5.id}"
 
-      within "#invoice_show-#{@invoice_1.id}" do
-        expect(page).to have_content("#{@invoice_1.invoice_items.first.item.name}")
-        expect(page).to have_content("#{@invoice_1.invoice_items.first.quantity}")
-        expect(page).to have_content("#{@invoice_1.invoice_items.first.unit_price}")
-        expect(page).to have_content("#{@invoice_1.invoice_items.first.status}")
+
+      within "#invoice_show-#{@invoice_5.id}" do
+
+        expect(page).to have_content("#{@invoice_5.invoice_items.first.item.name}")
+        expect(page).to have_content("#{@invoice_5.invoice_items.first.quantity}")
+        expect(page).to have_content("#{@invoice_5.invoice_items.first.unit_price}")
+        expect(page).to have_content("#{@invoice_5.invoice_items.first.status}")
       end
+    end
+
+    it 'I see the total revenue and the total discounted revenue for an invoice with multiple merchants' do
+      visit "/admin/invoices/#{@invoice_2.id}"
+
+      within "#admin_revenue" do
+        expect(page).to have_content("Total revenue generated: #{@invoice_2.total_revenue}")
+        expect(page).to have_content("Total discount revenue generated: #{@invoice_2.total_discount_rev}")
+      end
+
     end
   end
 end

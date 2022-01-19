@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 root 'welcome#index'
 
 get '/merchants/:merchant_id/dashboard', to: 'merchants#dashboard'
+
+delete '/merchant/:merchant_id/bulk_discounts', to: 'bulk_discounts#destroy'
 # get '/merchants/:merchant_id/items', to: 'merchant_items#index'
 
   resources :merchants, only: [:show] do
@@ -11,7 +13,7 @@ get '/merchants/:merchant_id/dashboard', to: 'merchants#dashboard'
     resources :items
     resources :invoices, only: [:index, :show]
     resources :invoice_items, only: :update
-    resources :bulk_discounts, only: [:index, :show]
+    resources :bulk_discounts
   end
 
   namespace :admin do

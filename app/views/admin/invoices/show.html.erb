@@ -4,7 +4,10 @@
 <p>Invoice created at: <%= @invoice.created_at.strftime("%A, %B %d, %Y") %></p>
 <p>Customer first name: <%= @invoice.customer.first_name %></p>
 <p>Customer last name: <%= @invoice.customer.last_name %></p>
+<section id ="admin_revenue">
 <p>Total revenue generated: <%= @invoice.total_revenue %> </p>
+<p>Total discount revenue generated: <%= @invoice.total_discount_rev %> </p>
+</section>
 <p>
   <%= form_with model: [:admin, @invoice], local: true do |form| %>
     <%= form.label "Status:" %>
