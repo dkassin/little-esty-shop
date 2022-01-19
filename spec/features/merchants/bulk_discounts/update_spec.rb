@@ -10,7 +10,7 @@ RSpec.describe "Merchant Bulk Discount update" do
 
     click_link("Edit the bulk discount")
 
-    expect(current_path).to eq("/merchants/#{@merchant_1.id}/bulk_discounts/edit")
+    expect(current_path).to eq("/merchants/#{@merchant_1.id}/bulk_discounts/#{@discount_1.id}/edit")
 
   end
 end

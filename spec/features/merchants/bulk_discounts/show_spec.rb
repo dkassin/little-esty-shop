@@ -9,4 +9,8 @@ RSpec.describe "Merchant Bulk Discount show" do
     expect(page).to have_content(@discount_1.discount)
     expect(page).to_not have_content(@discount_2.name)
   end
+
+
+
+
 end
