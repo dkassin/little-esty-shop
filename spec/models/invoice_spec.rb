@@ -64,5 +64,9 @@ RSpec.describe Invoice do
     it 'shows an invoice has two items, both qualify for different discounts that are both applied seperately' do
       expect(@invoice_4.amount_discount_rev_filtered(@merchant_1)).to eq(37443)
     end
+
+    it 'shows the total discounted revenue' do
+      expect(@invoice_4.total_discounted_rev_filtered(@merchant_1)).to eq(87372)
+    end
   end
 end
