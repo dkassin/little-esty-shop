@@ -19,9 +19,6 @@ class Invoice < ApplicationRecord
     .distinct
   end
 
-  def discount_rev_by_merchant(merchant)
-    merchant_filter(merchant).sum {|i_item| i_item.discounted_rev}
-  end
 
   def merchant_filter(merchant)
     invoice_items.joins(:merchant).where(merchants: {id: merchant.id})

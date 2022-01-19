@@ -12,16 +12,4 @@ class InvoiceItem < ApplicationRecord
                   .where('quantity_threshold <= ?', self.quantity)
                   .first
   end
-
-  def rev
-    quantity * unit_price
-  end
-
-  def discounted_rev
-    if best_discount == nil
-      rev
-    else
-      quantity * unit_price * ((100-best_discount.discount)/100)
-    end
-  end
 end
