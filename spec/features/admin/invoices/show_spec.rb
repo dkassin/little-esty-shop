@@ -42,5 +42,15 @@ RSpec.describe 'Admin Invoices Show' do
         expect(page).to have_content("#{@invoice_5.invoice_items.first.status}")
       end
     end
+
+    it 'I see the total revenue and the total discounted revenue for an invoice with multiple merchants' do
+      visit "/admin/invoices/#{@invoice_2.id}"
+
+      within "#admin_revenue" do
+        expect(page).to have_content("Total revenue generated: #{@invoice_2.total_revenue}")
+        expect(page).to have_content("Total discount revenue generated: #{@invoice_2.total_discount_rev}")
+      end
+
+    end
   end
 end
