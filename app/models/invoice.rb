@@ -42,4 +42,16 @@ class Invoice < ApplicationRecord
   def total_discounted_rev_filtered(merchant)
     total_rev_by_merchant(merchant) - amount_discount_rev_filtered(merchant)
   end
+
+  def amount_discount_rev
+    invoice_items.joins(:bulk_discounts)
+                  .where('invoice_items.quantity >= bulk_discounts.quantity_threshold')
+                  .select('invoice_items.id, max(invoice_items.unit_price * invoice_items.quantity * (bulk_discounts.discount/100)) as best_discount_amount')
+                  .group('invoice_items.id')
+                  .sum(&:best_discount_amount)
+  end
+
+  def total_discount_rev
+    total_revenue - amount_discount_rev
+  end
 end
